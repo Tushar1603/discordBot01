@@ -122,9 +122,37 @@ client.on('interactionCreate', async (interaction) => {
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+// this part of the code is a command that replies with a pong when the users enter /ping in the chat.
+client.on('ready', () => {
+  client.guilds.cache.forEach((guild) => {
+    guild.commands.create({
+      name: 'random',
+      description: 'picks a random number between 1 and 100!',
+    });
+  });
+});
 
+// this will work as the interaction from the bot side.
+client.on('interactionCreate', async (interaction) => {
+  console.log('Interaction received:', interaction);
+
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === 'random') {  //this is the command that we'll have to write
+    
+    const result = Math.floor(Math.random() * 100) + 1;
+    await interaction.reply(`Random Number for you is: ${result}!`);
+  }
+});
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 // thsi is the token id for the bot itself.(i will change it after uploading it on github.)
 client.login("MTE3ODUyMjIzNDQyMDIxMTc4Mw.GSalKJ.gRrNOcQyt1HJksepY3QspeIF8KuD7UdSN987MM");
