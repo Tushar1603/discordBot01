@@ -36,7 +36,7 @@ client.on('messageCreate', (message) => {
   
   //this will check if the bot is mentioned in the comment/message so that the bot can interact with the messager.
   if (message.mentions.has(client.user.id)) {
-    message.reply('Hello! How can I help you?');
+    message.reply('Hello, How can I help you?');
   }
 
 
@@ -63,6 +63,7 @@ client.on('messageCreate', (message) => {
 
 
 
+// this part of the code is a command that replies with a pong when the users enter /ping in the chat.
 client.on('ready', () => {
   client.guilds.cache.forEach((guild) => {
     guild.commands.create({
@@ -72,6 +73,7 @@ client.on('ready', () => {
   });
 });
 
+// this will work as the interaction from the bot side.
 client.on('interactionCreate', async (interaction) => {
   console.log('Interaction received:', interaction);
 
@@ -79,11 +81,50 @@ client.on('interactionCreate', async (interaction) => {
 
   const { commandName } = interaction;
 
-  if (commandName === 'ping') {
+  if (commandName === 'ping') {  //this is the command that we'll have to write
     console.log('Ping command received!');
-    await interaction.reply('Pong!');
+    await interaction.reply('Pong!');  //this is the response to the command.
   }
 });
 
 
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// this part of the code is a command that replies with a pong when the users enter /ping in the chat.
+client.on('ready', () => {
+  client.guilds.cache.forEach((guild) => {
+    guild.commands.create({
+      name: 'roll',
+      description: 'rolls a dice!',
+    });
+  });
+});
+
+// this will work as the interaction from the bot side.
+client.on('interactionCreate', async (interaction) => {
+  console.log('Interaction received:', interaction);
+
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === 'roll') {  //this is the command that we'll have to write
+    const result = Math.floor(Math.random() * 6) + 1;
+    await interaction.reply(`You rolled a ${result}!`);
+  }
+});
+
+
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// thsi is the token id for the bot itself.(i will change it after uploading it on github.)
 client.login("MTE3ODUyMjIzNDQyMDIxMTc4Mw.GSalKJ.gRrNOcQyt1HJksepY3QspeIF8KuD7UdSN987MM");
