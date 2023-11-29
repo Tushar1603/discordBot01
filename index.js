@@ -155,4 +155,4 @@ client.on('interactionCreate', async (interaction) => {
 
 
 // thsi is the token id for the bot itself.(i will change it after uploading it on github.)
-client.login("MTE3ODUyMjIzNDQyMDIxMTc4Mw.GSalKJ.gRrNOcQyt1HJksepY3QspeIF8KuD7UdSN987MM");
+client.login(your bot token here");
